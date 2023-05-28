@@ -44,39 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBI61_YMkkSvaZMo5zeKK78vs-CN-4yBPk',
-    appId: '1:930419203888:web:9c4726065f2e5a2f3fb2f5',
-    messagingSenderId: '930419203888',
-    projectId: 'instagram-clone-8e3e1',
-    authDomain: 'instagram-clone-8e3e1.firebaseapp.com',
-    storageBucket: 'instagram-clone-8e3e1.appspot.com',
+    apiKey: 'AIzaSyBkGXdVRD-98Cre8mtMWur-OWCDVG4kl3M',
+    appId: '1:615629214256:web:49e8d6bbf9dc6a393d53f5',
+    messagingSenderId: '615629214256',
+    projectId: 'closet-4850b',
+    authDomain: 'closet-4850b.firebaseapp.com',
+    storageBucket: 'closet-4850b.appspot.com',
+    measurementId: 'G-NPGZL9V729',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAMSAkKsxj-OaPsSxTh5MN_E279zSfMZPU',
-    appId: '1:930419203888:android:582c233b958322ff3fb2f5',
-    messagingSenderId: '930419203888',
-    projectId: 'instagram-clone-8e3e1',
-    storageBucket: 'instagram-clone-8e3e1.appspot.com',
+    apiKey: 'AIzaSyBsC6Iy_UO1BH3s0OUq3pCiwwuXvOLOLiA',
+    appId: '1:615629214256:android:3237ff9bc0e1725d3d53f5',
+    messagingSenderId: '615629214256',
+    projectId: 'closet-4850b',
+    storageBucket: 'closet-4850b.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC__nFCmRhjLmvKB1xRq3IMZxV8NmdiUFE',
-    appId: '1:930419203888:ios:692d320a850eddc83fb2f5',
-    messagingSenderId: '930419203888',
-    projectId: 'instagram-clone-8e3e1',
-    storageBucket: 'instagram-clone-8e3e1.appspot.com',
-    iosClientId: '930419203888-90bfqacu2aeoaupkfhblqvdnqccr8ob0.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCk3tlEuWgz7OWOKtfQ-SsBDpOJpSMxMzo',
+    appId: '1:615629214256:ios:c0bceac34d718b613d53f5',
+    messagingSenderId: '615629214256',
+    projectId: 'closet-4850b',
+    storageBucket: 'closet-4850b.appspot.com',
+    iosClientId: '615629214256-hd6m7ib4ag7bgs12f87cmgt7h0c4mq3p.apps.googleusercontent.com',
     iosBundleId: 'com.example.instagramClone1',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC__nFCmRhjLmvKB1xRq3IMZxV8NmdiUFE',
-    appId: '1:930419203888:ios:692d320a850eddc83fb2f5',
-    messagingSenderId: '930419203888',
-    projectId: 'instagram-clone-8e3e1',
-    storageBucket: 'instagram-clone-8e3e1.appspot.com',
-    iosClientId: '930419203888-90bfqacu2aeoaupkfhblqvdnqccr8ob0.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCk3tlEuWgz7OWOKtfQ-SsBDpOJpSMxMzo',
+    appId: '1:615629214256:ios:c0bceac34d718b613d53f5',
+    messagingSenderId: '615629214256',
+    projectId: 'closet-4850b',
+    storageBucket: 'closet-4850b.appspot.com',
+    iosClientId: '615629214256-hd6m7ib4ag7bgs12f87cmgt7h0c4mq3p.apps.googleusercontent.com',
     iosBundleId: 'com.example.instagramClone1',
   );
 }
