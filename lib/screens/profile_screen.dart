@@ -114,8 +114,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ))
               ],
             ),
+            
             body: SafeArea(
-              child: Column(
+/////////////////
+child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+        future: FirebaseFirestore.instance.collection('users').doc(widget.uid).get(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            showSnackBar(snapshot.error.toString(), context);
+          }
+
+          final userData = snapshot.data?.data();
+
+/////////////////
+              // child: Column(
+                return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
@@ -281,7 +298,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         }),
                   )
                 ],
-              ),
+              )
+        }
             ),
           );
   }
