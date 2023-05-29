@@ -49,6 +49,7 @@ class AuthMedthod {
             followings: [],
             photoURL: photoURL);
         await _firestore.collection('users').doc(credential.user!.uid).set(
+              // await _firestore.collection('user').doc(credential.user!.uid).set(
               user.toJason(),
             );
         res = 'success';

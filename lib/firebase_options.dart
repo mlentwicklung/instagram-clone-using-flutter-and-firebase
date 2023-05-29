@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '615629214256',
     projectId: 'closet-4850b',
     storageBucket: 'closet-4850b.appspot.com',
-    iosClientId: '615629214256-hd6m7ib4ag7bgs12f87cmgt7h0c4mq3p.apps.googleusercontent.com',
+    iosClientId:
+        '615629214256-hd6m7ib4ag7bgs12f87cmgt7h0c4mq3p.apps.googleusercontent.com',
     iosBundleId: 'com.example.instagramClone1',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '615629214256',
     projectId: 'closet-4850b',
     storageBucket: 'closet-4850b.appspot.com',
-    iosClientId: '615629214256-hd6m7ib4ag7bgs12f87cmgt7h0c4mq3p.apps.googleusercontent.com',
+    iosClientId:
+        '615629214256-hd6m7ib4ag7bgs12f87cmgt7h0c4mq3p.apps.googleusercontent.com',
     iosBundleId: 'com.example.instagramClone1',
   );
 }

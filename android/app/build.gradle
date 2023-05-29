@@ -57,8 +57,23 @@ android {
         // versionCode flutterVersionCode.toInteger()
         // versionName flutterVersionName
 
-        minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
-        targetSdkVersion localProperties.getProperty('flutter.targetSdkVersion').toInteger()
+        // minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
+        def minSdkVersionValue = localProperties.getProperty('flutter.minSdkVersion')
+        if (minSdkVersionValue != null) {
+            minSdkVersion Integer.parseInt(minSdkVersionValue)
+        } else {
+            // Set a fallback value for minSdkVersion if necessary
+            minSdkVersion 21 // or any other suitable fallback value
+        }
+        // targetSdkVersion localProperties.getProperty('flutter.targetSdkVersion').toInteger()
+        def targetSdkVersionValue = localProperties.getProperty('flutter.targetSdkVersion')
+        if (targetSdkVersionValue != null) {
+            targetSdkVersion Integer.parseInt(targetSdkVersionValue)
+        } else {
+            // Set a fallback value for targetSdkVersion if necessary
+            targetSdkVersion 29 // or any other suitable fallback value
+        }
+
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

@@ -21,8 +21,35 @@ class User {
     required this.photoURL,
   });
 
+// static User fromSnap(DocumentSnapshot snap) {
+//     var snapshot = snap.data() as Map<String, dynamic>;
 
-static User fromSnap(DocumentSnapshot snap) {
+//     return User(
+//       username: snapshot["username"],
+//       password: snapshot["password"],
+//       uid: snapshot["uid"],
+//       email: snapshot["email"],
+//       photoURL: snapshot["photoURL"],
+//       fullName: snapshot["fullName"],
+//       followers: snapshot["followers"],
+//       followings: snapshot["followings"],
+//     );
+//   }
+
+  static User fromSnap(DocumentSnapshot? snap) {
+    if (snap == null || !snap.exists || snap.data() == null) {
+      return User(
+        email: '',
+        uid: '',
+        fullName: '',
+        username: '',
+        password: '',
+        followers: [],
+        followings: [],
+        photoURL: '',
+      );
+    }
+
     var snapshot = snap.data() as Map<String, dynamic>;
 
     return User(

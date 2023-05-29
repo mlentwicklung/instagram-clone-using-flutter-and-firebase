@@ -51,9 +51,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: _passwordController.text,
         profilePicture: _image!);
 
-    setState(() {
-      _isloading = false;
-    });
+    // setState(() {
+    //   _isloading = false;
+    // });
+
+    if (mounted) {
+      setState(() {
+        _isloading = false;
+      });
+    }
 
     if (res != 'success') {
       showSnackBar(res, context);

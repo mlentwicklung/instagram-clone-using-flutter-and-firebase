@@ -12,9 +12,17 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:zoom_pinch_overlay/zoom_pinch_overlay.dart';
 
+// class PostCard extends StatefulWidget {
+//   final snap;
+//   const PostCard({super.key, required this.snap});
+
+//   @override
+//   State<PostCard> createState() => _PostCardState();
+// }
+
 class PostCard extends StatefulWidget {
   final snap;
-  const PostCard({super.key, required this.snap});
+  const PostCard({Key? key, required this.snap});
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -24,42 +32,57 @@ class _PostCardState extends State<PostCard> {
   bool isAnimating = false;
   int numberOfComments = 0;
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getComments();
+  // }
   @override
   void initState() {
     super.initState();
-    getComments();
+    if (widget.snap != null && widget.snap['postId'] != "") {
+      getComments();
+    }
   }
 
-  void getComments() async {
-    // StreamBuilder(
-    //   stream: FirebaseFirestore.instance
-    //       .collection('posts')
-    //       .doc(widget.snap['postId'])
-    //       .collection('comments')
-    //       .snapshots(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.hasData) {
-    //       numberOfComments = snapshot.data!.docs.length;
-    //       print(numberOfComments);
-    //     }
-    //     return const CircularProgressIndicator();
-    //   },
-    // );
+  // void getComments() async {
+  //   if (widget.snap != null &&
+  //       widget.snap['postId'] != null &&
+  //       widget.snap['postId'].isNotEmpty) {
+  //     final QuerySnapshot snap = await FirebaseFirestore.instance
+  //         .collection('posts')
+  //         .doc(widget.snap['postId'])
+  //         .collection('comments')
+  //         .get();
 
+  //     setState(() {
+  //       numberOfComments = snap.docs.length;
+  //     });
+  //   }
+  // }
+
+  void getComments() async {
     final QuerySnapshot snap = await FirebaseFirestore.instance
         .collection('posts')
         .doc(widget.snap['postId'])
         .collection('comments')
         .get();
 
-    numberOfComments = snap.docs.length;
-    // print(numberOfComments);
+    setState(() {
+      numberOfComments = snap.docs.length;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final model.User user = Provider.of<UserProvider>(context).getUser;
-  
+
+    // if (widget.snap == null || widget.snap['postId'] == null) {
+    if (widget.snap == null || widget.snap['postId'] == "") {
+      // Return a placeholder or empty widget when the necessary data is not available.
+      return Container();
+    }
+
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 1),
@@ -131,8 +154,8 @@ class _PostCardState extends State<PostCard> {
         ),
         GestureDetector(
           onDoubleTap: () async {
-            FireStoreMethods().likePost(widget.snap['postId'],
-                user.uid, widget.snap['likes']);
+            FireStoreMethods().likePost(
+                widget.snap['postId'], user.uid, widget.snap['likes']);
             setState(() {
               isAnimating = true;
             });
@@ -188,8 +211,8 @@ class _PostCardState extends State<PostCard> {
               smallLike: true,
               child: IconButton(
                   onPressed: () async {
-                    await FireStoreMethods().likePost(widget.snap['postId'],
-                       user.uid, widget.snap['likes']);
+                    await FireStoreMethods().likePost(
+                        widget.snap['postId'], user.uid, widget.snap['likes']);
                     setState(() {
                       isAnimating = true;
                     });
