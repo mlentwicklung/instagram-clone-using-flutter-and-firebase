@@ -114,193 +114,170 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ))
               ],
             ),
-            
             body: SafeArea(
 /////////////////
-child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        future: FirebaseFirestore.instance.collection('users').doc(widget.uid).get(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
+              child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                  future: FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(widget.uid)
+                      .get(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
 
-          if (snapshot.hasError) {
-            showSnackBar(snapshot.error.toString(), context);
-          }
+                    if (snapshot.hasError) {
+                      showSnackBar(snapshot.error.toString(), context);
+                    }
 
-          final userData = snapshot.data?.data();
+                    final userData = snapshot.data?.data();
 
 /////////////////
-              // child: Column(
-                return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16).copyWith(top: 0),
-                    child: Row(
+                    // child: Column(
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          // padding: EdgeInsets.all(10).copyWith(top: 20),
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(userData['photoURL']),
-                            radius: 40,
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
+                        Padding(
+                          padding: const EdgeInsets.all(16).copyWith(top: 0),
+                          child: Row(
                             children: [
-                              Row(
-                                children: [
-                                  Padding(padding: EdgeInsets.only(left: 25)),
-                                  buildStatColumn('Posts', postLen),
-                                  buildStatColumn('followers', followers),
-                                  buildStatColumn('following', following),
-                                ],
+                              Container(
+                                // padding: EdgeInsets.all(10).copyWith(top: 20),
+                                child: CircleAvatar(
+                                  backgroundImage:
+                                      NetworkImage(userData!['photoURL']),
+                                  radius: 40,
+                                ),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    child: FirebaseAuth
-                                                .instance.currentUser!.uid ==
-                                            widget.uid
-                                        ? FollowButton(
-                                            backgroundColor: Colors.transparent,
-                                            borderColor: Colors.black,
-                                            text: 'Edit Profile',
-                                            textColor: Colors.black)
-                                        : isFollowing
-                                            ? FollowButton(
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                borderColor: Colors.black,
-                                                text: 'unfollow',
-                                                textColor: Colors.black)
-                                            : FollowButton(
-                                                backgroundColor: Colors.blue,
-                                                borderColor: Colors.black,
-                                                text: 'follow',
-                                                textColor: Colors.black),
-                                  ),
-                                ],
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                            padding: EdgeInsets.only(left: 25)),
+                                        buildStatColumn('Posts', postLen),
+                                        buildStatColumn('followers', followers),
+                                        buildStatColumn('following', following),
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          child: FirebaseAuth.instance
+                                                      .currentUser!.uid ==
+                                                  widget.uid
+                                              ? FollowButton(
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  borderColor: Colors.black,
+                                                  text: 'Edit Profile',
+                                                  textColor: Colors.black)
+                                              : isFollowing
+                                                  ? FollowButton(
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      borderColor: Colors.black,
+                                                      text: 'unfollow',
+                                                      textColor: Colors.black)
+                                                  : FollowButton(
+                                                      backgroundColor:
+                                                          Colors.blue,
+                                                      borderColor: Colors.black,
+                                                      text: 'follow',
+                                                      textColor: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
 
-                  //full name
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    alignment: Alignment.bottomLeft,
-                    child: Text(
-                      userData['fullName'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                        //full name
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            userData['fullName'],
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
 
-                  //bio
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20).copyWith(top: 10),
-                    alignment: Alignment.bottomLeft,
-                    child: Text('bio goes here'),
-                  ),
+                        //bio
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20)
+                              .copyWith(top: 10),
+                          alignment: Alignment.bottomLeft,
+                          child: Text('bio goes here'),
+                        ),
 
-                  new Divider(
-                    color: Colors.grey.shade400,
-                  ),
+                        new Divider(
+                          color: Colors.grey.shade400,
+                        ),
 
-                  //posts or reels
+                        //posts or reels
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                          padding: EdgeInsets.symmetric(horizontal: 30),
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.video_label_outlined,
-                            size: 30,
-                            color: Colors.grey.shade600,
-                          )),
-                      IconButton(
-                          padding: EdgeInsets.symmetric(horizontal: 30),
-                          onPressed: () {},
-                          icon: Icon(Icons.video_library_outlined,
-                              size: 30, color: Colors.grey.shade600)),
-                    ],
-                  ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(
+                                padding: EdgeInsets.symmetric(horizontal: 30),
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.video_label_outlined,
+                                  size: 30,
+                                  color: Colors.grey.shade600,
+                                )),
+                            IconButton(
+                                padding: EdgeInsets.symmetric(horizontal: 30),
+                                onPressed: () {},
+                                icon: Icon(Icons.video_library_outlined,
+                                    size: 30, color: Colors.grey.shade600)),
+                          ],
+                        ),
 
-                  //posts grid
+                        //posts grid
 
-                  Expanded(
-                    //  child: FutureBuilder(
-                    //                future: FirebaseFirestore.instance.collection('posts').get(),
-                    //                builder: (context, snapshot) {
-                    //                  if (!snapshot.hasData) {
-                    //                    const Center(
-                    //                      child: CircularProgressIndicator(),
-                    //                    );
-                    //                  }
-
-                    //                  return MasonryGridView.builder(
-                    //                      crossAxisSpacing: 4,
-                    //                      mainAxisSpacing: 4,
-                    //                      gridDelegate:
-                    //   const  SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                    //         crossAxisCount: 2),
-                    //                      itemCount: (snapshot.data! as dynamic).docs.length,
-                    //                      itemBuilder: (context, index) {
-                    //   return ClipRRect(
-                    //     child: Image.network((snapshot.data! as dynamic)
-                    //         .docs[index]['postURL']),
-                    //   );
-                    //                      });
-                    //                }
-                    //                ),
-
-                    child: FutureBuilder(
-                        future: FirebaseFirestore.instance
-                            .collection('posts')
-                            .where('uid', isEqualTo: widget.uid)
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
-                            const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                          return GridView.builder(
-                              shrinkWrap: true,
-                              itemCount:
-                                  (snapshot.data! as dynamic).docs.length,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
-                                      crossAxisSpacing: 3,
-                                      mainAxisSpacing: 3
-                                      ),
-                              itemBuilder: (context, index) {
-                                return Container(
-                                    child: Image(
+                        Expanded(
+                          child: FutureBuilder(
+                              future: FirebaseFirestore.instance
+                                  .collection('posts')
+                                  .where('uid', isEqualTo: widget.uid)
+                                  .get(),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return GridView.builder(
+                                    shrinkWrap: true,
+                                    itemCount:
+                                        (snapshot.data! as dynamic).docs.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 3,
+                                            crossAxisSpacing: 3,
+                                            mainAxisSpacing: 3),
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                          child: Image(
                                         image: NetworkImage(
                                             (snapshot.data! as dynamic)
                                                 .docs[index]['postURL']),
-
-                                                fit: BoxFit.cover,
-
-                                                )
-                                                );
-                              });
-                        }),
-                  )
-                ],
-              )
-        }
-            ),
-          );
+                                        fit: BoxFit.cover,
+                                      ));
+                                    });
+                              }),
+                        )
+                      ],
+                    );
+                  }),
+            ));
   }
 }
