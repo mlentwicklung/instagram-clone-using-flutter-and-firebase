@@ -8,7 +8,7 @@ import 'package:instagram_clone1/widgets/textfield_input.dart';
 
 class LoginScreen extends StatefulWidget {
   final Function()? onTap;
-  const LoginScreen({super.key , required this.onTap});
+  const LoginScreen({super.key, required this.onTap});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -60,7 +60,8 @@ class _LoginScreenState extends State<LoginScreen> {
         //app logo
         SvgPicture.asset(
           'assets/images/instagram.svg',
-          color: primaryColor,
+          // color: primaryColor,
+          color: Colors.black,
           height: 80,
         ),
 
@@ -93,18 +94,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
         InkWell(
           onTap: loginUser,
-          child: isLoading?const Center(child: CircularProgressIndicator(),) 
-          :Container(
-            width: double.infinity,
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(vertical: 18),
-            decoration: const ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(4))),
-              color: blueColor,
-            ),
-            child: const Text("Login"),
-          ),
+          child: isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                  decoration: const ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4))),
+                    color: blueColor,
+                  ),
+                  child: const Text("Login"),
+                ),
         ),
 
         Flexible(
